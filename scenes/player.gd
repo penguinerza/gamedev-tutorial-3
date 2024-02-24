@@ -1,8 +1,6 @@
 extends KinematicBody2D
 
-onready var _animated_sprite = $AnimatedSprite
 
-signal status(is_running, did_double_jump, is_crouching)
 
 var velocity = Vector2()
 var speed = 300
@@ -13,6 +11,10 @@ var speed_multiplier = 1
 var last_key = {}
 var cd = .5
 const GRAVITY = 3000
+
+onready var _animated_sprite = $AnimatedSprite
+
+signal status(is_running, did_double_jump, is_crouching)
 
 func _process(_delta):
 	if velocity.x > 0:
