@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-
-
 var velocity = Vector2()
 var speed = 300
 var is_running = false
@@ -12,33 +10,31 @@ var last_key = {}
 var cd = .5
 const GRAVITY = 3000
 
-onready var _animated_sprite = $AnimatedSprite
-
 signal status(is_running, did_double_jump, is_crouching)
 
 func _process(_delta):
 	if velocity.x > 0:
-		_animated_sprite.flip_h = false
+		$AnimatedSprite.flip_h = false
 	elif velocity.x < 0:
-		_animated_sprite.flip_h = true
+		$AnimatedSprite.flip_h = true
 			
 	if !is_on_floor():
 		if velocity.y > 0:
-			_animated_sprite.play("fall")
+			$AnimatedSprite.play("fall")
 		else:
-			_animated_sprite.play("jump")
+			$AnimatedSprite.play("jump")
 			
 	else:
 		did_double_jump = false
 		if velocity.x != 0:
-			_animated_sprite.play("run")
+			$AnimatedSprite.play("run")
 		else:
 			is_running = false
-			_animated_sprite.play("idle")
+			$AnimatedSprite.play("idle")
 		
 		if Input.is_action_pressed("down"):
 			is_crouching = true
-			_animated_sprite.play("crouch")
+			$AnimatedSprite.play("crouch")
 		else:
 			is_crouching = false
 	
