@@ -12,13 +12,13 @@ const GRAVITY = 3000
 
 signal status(is_running, did_double_jump, is_crouching)
 
-# Implementasi animasi
+
 func _process(_delta):
 	if velocity.x > 0:
 		$AnimatedSprite.flip_h = false
 	elif velocity.x < 0:
 		$AnimatedSprite.flip_h = true
-			
+		
 	if !is_on_floor():
 		if velocity.y > 0:
 			$AnimatedSprite.play("fall")
@@ -36,10 +36,12 @@ func _process(_delta):
 		if Input.is_action_pressed("down"):
 			is_crouching = true
 			$AnimatedSprite.play("crouch")
+#			$AnimatedSprite.play("invincible")
 		else:
 			is_crouching = false
 	
 	emit_signal("status", is_running, did_double_jump, is_crouching)
+
 
 func jump():
 	if !is_on_floor():
@@ -47,6 +49,7 @@ func jump():
 			return
 		did_double_jump = true
 	velocity.y = -800
+
 
 func _physics_process(delta):
 	velocity.y += delta * GRAVITY
@@ -70,7 +73,7 @@ func _physics_process(delta):
 				is_running = true
 	else:
 		vector = 0
-		
+
 	if Input.is_action_just_released("right"):
 		last_key["right"] = OS.get_ticks_msec() / 1000.0
 	if Input.is_action_just_released("left"):
@@ -84,11 +87,10 @@ func _physics_process(delta):
 			speed_multiplier = 1.6
 		else:
 			speed_multiplier = 1
-	
+
 	# Implementasi jump (+double jump)
 	if Input.is_action_just_pressed("up"):
 		jump()
-	
+
 	velocity.x = speed * vector * speed_multiplier
 	velocity = move_and_slide(velocity, Vector2.UP, true)
-

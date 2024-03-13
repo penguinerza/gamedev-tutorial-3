@@ -1,5 +1,25 @@
 # README
 
+## Tutorial 5
+
+menambahkan animasi dari dan sound dari beberapa sumber berikut
+
+-   animasi: https://luizmelo.itch.io/monsters-creatures-fantasy
+-   sfx: https://freesound.org/people/plasterbrain/sounds/394466/
+-   bgm: https://www.youtube.com/watch?v=wuF7IUjeEyU
+
+### Objek beranimasi
+
+Untuk objek yang beranimasi kali ini sama dengan saat membuat karakter. membuat node, collider, dan pasang animated sprite. Tidak tau cara mengembalikan state animasi ke idle setelah terkena hit.
+
+### SFX
+
+SFX yang diimplementasi adalah SFX yang aktif ketika monster terkena karakter. Diset tidak loop supaya tidak selamanya aktif
+
+### BGM
+
+BGM dipasang sebagai child dari root node. Diset autoplay supaya dapat langsung aktif ketika scene tersebut dimainkan.
+
 ## Tutorial 3
 
 Fitur yang diimplementasi adalah fitur Double jump, Running dan Crouching.
